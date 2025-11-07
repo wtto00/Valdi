@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE.md)
 [![Platforms](https://img.shields.io/badge/platform-iOS%20%7C%20Android%20%7C%20macOS-lightgrey)](./docs/INSTALL.md)
 [![Status](https://img.shields.io/badge/status-beta-yellow)]()
-[![Discord](https://img.shields.io/discord/1175869743591559168?color=7289da&label=Discord&logo=discord&logoColor=white)](https://discord.gg/uJyNEeYX2U)
+[![Discord](https://img.shields.io/discord/1285677307163574322?color=7289da&label=Discord&logo=discord&logoColor=white)](https://discord.gg/uJyNEeYX2U)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![Documentation](https://img.shields.io/badge/docs-available-brightgreen)](./docs/README.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
@@ -39,8 +39,8 @@ class HelloWorld extends Component {
 - [Getting Started Guide](./docs/INSTALL.md)
 - [Documentation](./docs/README.md)
 - [Codelabs](./docs/docs/start-code-lab.md)
-- [API Reference](./docs/generated-docs/valdi-generated.md)
-- [Component Library](https://github.com/Snapchat/Valdi_Widgets)
+- [API Reference](./docs/api/api-quick-reference.md)
+- [Component Library (Coming Soon!)](https://github.com/Snapchat/Valdi_Widgets)
 
 ## Why Choose Valdi?
 
@@ -99,7 +99,7 @@ Valdi generates type-safe bindings between TypeScript and native platforms:
 
 ## Need Help?
 
-Join our [Discord](https://discord.gg/sqMERrCVYF) for support.
+Join our [Discord](https://discord.gg/uJyNEeYX2U) for support.
 
 ## Contributing
 

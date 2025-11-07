@@ -124,4 +124,4 @@ Ready to start building? Check out:
 
 ## Need Help?
 
-Join our [Discord community](https://discord.gg/sqMERrCVYF) for support and discussions.
+Join our [Discord community](https://discord.gg/uJyNEeYX2U) for support and discussions.
