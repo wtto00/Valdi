@@ -6,3 +6,6 @@ export const ANDROID_MACOS_COMMANDLINE_TOOLS =
   'https://dl.google.com/android/repository/commandlinetools-mac-13114758_latest.zip';
 export const ANDROID_LINUX_COMMANDLINE_TOOLS =
   'https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip';
+export const ANDROID_WINDOWS_COMMANDLINE_TOOLS =
+  'https://dl.google.com/android/repository/commandlinetools-win-13114758_latest.zip';
+

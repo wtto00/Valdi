@@ -2,6 +2,7 @@ import { ANSI_COLORS } from '../core/constants';
 import { wrapInColor } from '../utils/logUtils';
 import { linuxSetup } from './linuxSetup';
 import { macOSSetup } from './macOSSetup';
+import { windowsSetup } from './windowsSetup';
 
 enum OSType {
   MACOS = 'macos',
@@ -38,8 +39,11 @@ export async function beginEnvironmentSetup(): Promise<number> {
       break;
     }
     case OSType.WINDOWS: {
-      console.log(wrapInColor('Windows is not a supported operating system...aborting...', ANSI_COLORS.RED_COLOR));
-      return 1;
+      console.log(wrapInColor('Setting up development environment for Windows...', ANSI_COLORS.BLUE_COLOR));
+      await windowsSetup();
+      break;
+      // console.log(wrapInColor('Windows is not a supported operating system...aborting...', ANSI_COLORS.RED_COLOR));
+      // return 1;
     }
     case OSType.LINUX: {
       console.log(wrapInColor('Setting up development environment for Linux...', ANSI_COLORS.BLUE_COLOR));

@@ -140,7 +140,7 @@ export class DevSetupHelper {
     }
 
     const androidHome = process.env['ANDROID_HOME'] ?? '';
-    const sdkManagerBin = path.join(androidHome, 'cmdline-tools/latest/bin/sdkmanager');
+    const sdkManagerBin = path.join(androidHome, `cmdline-tools/latest/bin/sdkmanager${process.platform === 'win32' ? '.bat' : ''}`);
 
     const sdkManagerEnvVariables: { [key: string]: string } = {};
     if (javaHomeOverride) {
@@ -149,17 +149,17 @@ export class DevSetupHelper {
 
     await this.runShell(
       'Installing Android platform',
-      [`${sdkManagerBin} --install 'platforms;${ANDROID_PLATFORM_VERSION}'`],
+      [`${sdkManagerBin} --install "platforms;${ANDROID_PLATFORM_VERSION}"`],
       sdkManagerEnvVariables,
     );
     await this.runShell(
       'Installing Android NDK',
-      [`${sdkManagerBin} --install 'ndk;${ANDROID_NDK_VERSION}'`],
+      [`${sdkManagerBin} --install "ndk;${ANDROID_NDK_VERSION}"`],
       sdkManagerEnvVariables,
     );
     await this.runShell(
       'Installing Android build-tools',
-      [`${sdkManagerBin} --install 'build-tools;${ANDROID_BUILD_TOOLS_VERSION}'`],
+      [`${sdkManagerBin} --install "build-tools;${ANDROID_BUILD_TOOLS_VERSION}"`],
       sdkManagerEnvVariables,
     );
 
@@ -181,6 +181,9 @@ export class DevSetupHelper {
       return path.join(homeDir, '.kshrc');
     } else if (shell.endsWith('/tcsh')) {
       return path.join(homeDir, '.tcshrc');
+    } else if (shell.endsWith('\\bash.exe')) {
+      // Git-Bash on Windows
+      return path.join(homeDir, '.bash_profile')
     } else {
       return undefined;
     }

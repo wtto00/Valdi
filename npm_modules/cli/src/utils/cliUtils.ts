@@ -29,7 +29,7 @@ export function spawnCliCommand(
   return new Promise((resolve, reject) => {
     const child = spawn(command, {
       stdio: stdioMode,
-      shell: getShell(),
+      shell: process.platform === 'win32' ? true : getShell(),
       cwd: cwd,
       env: { ...process.env, FORCE_COLOR: '1' },
     });
