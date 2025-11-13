@@ -42,8 +42,6 @@ export async function beginEnvironmentSetup(): Promise<number> {
       console.log(wrapInColor('Setting up development environment for Windows...', ANSI_COLORS.BLUE_COLOR));
       await windowsSetup();
       break;
-      // console.log(wrapInColor('Windows is not a supported operating system...aborting...', ANSI_COLORS.RED_COLOR));
-      // return 1;
     }
     case OSType.LINUX: {
       console.log(wrapInColor('Setting up development environment for Linux...', ANSI_COLORS.BLUE_COLOR));

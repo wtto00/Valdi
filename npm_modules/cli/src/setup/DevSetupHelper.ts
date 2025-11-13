@@ -115,7 +115,7 @@ export class DevSetupHelper {
     const rcFile = this.getRcFile();
 
     if (rcFile) {
-      suffix += ` Please run ${wrapInColor(`source ${rcFile}`, ANSI_COLORS.YELLOW_COLOR)} or restart your terminal.`;
+      suffix += ` Please run ${wrapInColor(`source "${rcFile}"`, ANSI_COLORS.YELLOW_COLOR)} or restart your terminal.`;
     }
     console.log(`${wrapInColor('Dev setup completed!', ANSI_COLORS.GREEN_COLOR)}.${suffix}`);
   }

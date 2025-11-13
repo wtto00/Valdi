@@ -104,7 +104,7 @@ function getShell(): string {
 
 export function checkCommandExists(command: string): boolean {
   try {
-    execSync(`command -v ${command}`, { stdio: 'ignore' });
+    execSync(`command -v ${command}`, { stdio: 'ignore', shell: getShell() });
     return true;
   } catch {
     return false;
