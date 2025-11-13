@@ -5,7 +5,14 @@ set -e
 
 CURRENT_SYSTEM=`uname`
 
-if [[ $CURRENT_SYSTEM == "Linux" ]]
+if [[ $CURRENT_SYSTEM == MINGW64_NT-* ]]
+then
+    if command -v node >/dev/null 2>&1; then
+        exit 0
+    fi
+fi
+
+if [[ $CURRENT_SYSTEM == "Linux" ]] || [[ $CURRENT_SYSTEM == MINGW64_NT-* ]]
 then
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
     export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"

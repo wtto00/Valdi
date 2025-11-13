@@ -94,6 +94,15 @@ if [[ "$IS_LINUX" = true ]]; then
     # Passing -Xswiftc -g ensures we output debug information even for release builds
     $SWIFT_BIN build $SWIFT_BUILD_ADDITIONAL_ARGS -c "$VARIANT" -Xswiftc -g --static-swift-stdlib
     OUTPUT_FILE_PATH=$($SWIFT_BIN build $SWIFT_BUILD_ADDITIONAL_ARGS -c "$VARIANT" -Xswiftc -g --show-bin-path)/$OUTPUT_FILENAME
+elif [[ $CURRENT_SYSTEM == MINGW64_NT-* ]]
+then
+    # If PATH `swift` is not the expected version, we try to use the latest known expected version toolchain
+    if [[ -z $SWIFT_VERSION_OUTPUT ]]; then
+        SWIFT_BIN="swift"
+        SWIFT_VERSION_OUTPUT=$($SWIFT_BIN --version | grep -e "$SWIFT_CURRENT_VERSION") || true
+    fi
+    $SWIFT_BIN build $SWIFT_BUILD_ADDITIONAL_ARGS -c "$VARIANT" -Xswiftc -g
+    OUTPUT_FILE_PATH=$($SWIFT_BIN build $SWIFT_BUILD_ADDITIONAL_ARGS -c "$VARIANT" -Xswiftc -g --show-bin-path)/$OUTPUT_FILENAME
 else
     # If PATH `swift` is not the expected version, we try to use the latest known expected version toolchain
     if [[ -z $SWIFT_VERSION_OUTPUT ]]; then

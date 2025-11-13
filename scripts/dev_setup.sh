@@ -18,6 +18,9 @@ pushd "$SCRIPT_DIR"
 if [[ $CURRENT_SYSTEM == "Linux" ]]
 then
     ./linux_dev_setup.sh
+elif [[ $CURRENT_SYSTEM == MINGW64_NT-* ]]
+then
+    ./windows_dev_setup.sh
 else
     ./macos_dev_setup.sh
 fi
@@ -29,7 +32,8 @@ echo
 echo "-> All done."
 
 echo "================================================================================================"
-echo "Your ~/.bashrc or ~/.zshrc may have been updated, make sure to open a new shell or source it now yourself:"
+echo "Your ~/.bashrc, ~/.bash_profile or ~/.zshrc may have been updated, make sure to open a new shell or source it now yourself:"
 echo "source ~/.bashrc"
+echo "source ~/.bash_profile"
 echo "source ~/.zshrc"
 echo "================================================================================================"
