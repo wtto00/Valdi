@@ -40,7 +40,12 @@
    define necessary library symbols; they are noted "INFRINGES ON
    USER NAME SPACE" below.  */
 
+#ifndef _WIN32
 #include <strings.h>
+#else
+#define strcasecmp _stricmp
+#define strncasecmp _strnicmp
+#endif
 
 /* Identify Bison output.  */
 #define YYBISON 1

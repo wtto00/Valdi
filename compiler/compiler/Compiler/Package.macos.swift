@@ -1,15 +1,12 @@
 // swift-tools-version:5.6
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
-import Foundation
-
 import PackageDescription
 
-let vcpkgRoot = ProcessInfo.processInfo.environment["VCPKG_ROOT"] ?? ""
 let package = Package(
     name: "Compiler",
     platforms: [
-        .macOS(.v11)
+        .macOS(.v11),
     ],
     dependencies: [
         .package(path: "Vendors/BlueSocket"),
@@ -22,13 +19,13 @@ let package = Package(
         .package(url: "https://github.com/mxcl/Chalk.git", from: "0.5.0"),
         .package(url: "https://github.com/jpsim/Yams.git", from: "5.0.6"),
         .package(url: "https://github.com/swift-server/swift-backtrace.git", from: "1.3.3"),
-        // .package(url: "https://github.com/getsentry/sentry-cocoa", from: "8.22.4"),
+        .package(url: "https://github.com/getsentry/sentry-cocoa", from: "8.22.4"),
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.3.1"),
         .package(url: "https://github.com/scinfu/SwiftSoup.git", from: "2.6.0"),
         .package(url: "https://github.com/apple/swift-crypto.git", from: "3.1.0"),
         .package(url: "https://github.com/marmelroy/Zip.git", .upToNextMinor(from: "2.1.0")),
         .package(
-            url: "https://github.com/apple/swift-collections.git", .upToNextMinor(from: "1.1.0")),
+          url: "https://github.com/apple/swift-collections.git", .upToNextMinor(from: "1.1.0")  ),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -49,7 +46,7 @@ let package = Package(
                 "Yams",
                 "Zip",
                 .product(name: "Crypto", package: "swift-crypto"),
-                // .product(name: "Sentry", package: "sentry-cocoa", condition: .when(platforms: [.macOS])),
+                .product(name: "Sentry", package: "sentry-cocoa", condition: .when(platforms: [.macOS])),
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
                 .product(name: "Collections", package: "swift-collections"),
             ],

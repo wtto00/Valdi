@@ -91,6 +91,7 @@ if [[ "$IS_LINUX" = true ]]; then
     # $SWIFT_BIN test
     # Can't run tests on Linux because of https://github.com/apple/swift-corelibs-xctest/issues/438
 
+    cp Package.macos.swift Package.swift
     # Passing -Xswiftc -g ensures we output debug information even for release builds
     $SWIFT_BIN build $SWIFT_BUILD_ADDITIONAL_ARGS -c "$VARIANT" -Xswiftc -g --static-swift-stdlib
     OUTPUT_FILE_PATH=$($SWIFT_BIN build $SWIFT_BUILD_ADDITIONAL_ARGS -c "$VARIANT" -Xswiftc -g --show-bin-path)/$OUTPUT_FILENAME
@@ -101,7 +102,12 @@ then
         SWIFT_BIN="swift"
         SWIFT_VERSION_OUTPUT=$($SWIFT_BIN --version | grep -e "$SWIFT_CURRENT_VERSION") || true
     fi
-    $SWIFT_BIN build $SWIFT_BUILD_ADDITIONAL_ARGS -c "$VARIANT" -Xswiftc -g
+
+    cp Package.windows.swift Package.swift
+
+    # Need `vcpkg install zlib`
+    vcpkg install zlib
+    $SWIFT_BIN build -Xcc -I$VCPKG_ROOT/installed/x64-windows/include -Xlinker -L$VCPKG_ROOT/installed/x64-windows/lib -Xlinker -lz $SWIFT_BUILD_ADDITIONAL_ARGS -c "$VARIANT" -Xswiftc -g --static-swift-stdlib
     OUTPUT_FILE_PATH=$($SWIFT_BIN build $SWIFT_BUILD_ADDITIONAL_ARGS -c "$VARIANT" -Xswiftc -g --show-bin-path)/$OUTPUT_FILENAME
 else
     # If PATH `swift` is not the expected version, we try to use the latest known expected version toolchain
@@ -122,6 +128,8 @@ else
         exit 1
     fi
 
+    cp Package.macos.swift Package.swift
+
     # Run tests
     $SWIFT_BIN test
 
@@ -137,6 +145,9 @@ fi
 
 if [[ "$IS_LINUX" = true ]]; then
     OUT_DIR="$bin_output_path/linux"
+elif [[ $CURRENT_SYSTEM == MINGW64_NT-* ]]
+then
+    OUT_DIR="$bin_output_path/windows"
 else
     OUT_DIR="$bin_output_path/macos"
 fi

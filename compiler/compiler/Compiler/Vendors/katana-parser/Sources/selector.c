@@ -23,7 +23,12 @@
 #include "selector.h"
 #include <string.h>
 #include <assert.h>
+#ifndef _WIN32
 #include <strings.h>
+#else
+#define strcasecmp _stricmp
+#define strncasecmp _strnicmp
+#endif
 
 #undef	assert
 #define assert(x)

@@ -10,7 +10,12 @@
 #include "parser.h"
 
 #include <string.h>
+#ifndef _WIN32
 #include <strings.h>
+#else
+#define strcasecmp _stricmp
+#define strncasecmp _strnicmp
+#endif
 #include <stdbool.h>
 #include <assert.h>
 
